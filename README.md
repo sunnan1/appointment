@@ -1,66 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+# Open Source Doctor Appointment Booking System using PHP
+![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(1).png)
 
-## About Laravel
+[Edoc](https://github.com/HashenUdara/edoc-doctor-appointment-system/) is a Simple web project that is made for e-channeling Using PHP,HTML & CSS.
+This initiative facilitates online appointment requests for clients or patients of medical establishments, including clinics and hospitals. This project can also help doctors to manage their appointment with their patients. This doctor's appointment system will organize the schedules of each patient's appointment, which will be submitted as a request to the doctor they have selected. The system comprises three key roles: administrator, doctor, and patient. The system admin will populate the list of the doctors with their specialties and along with the doctor's details and system credentials. The patients can browse the doctor's appointment system website to find a doctor that has the specialty of their needs. Patients can review the doctor's weekly schedule, enabling them to select a suitable day and time for their appointment. Subsequently, they can submit their appointment request. After that, the doctors can view all their appointments and the appointment request of the patients for their availability.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin
+  
+- Admin can add doctors, edit doctors, delete doctors    
+- Schedule new doctors sessions, remove sessions   
+- View patients details    
+- View booking of patients    
+    
+    
+ 
+ 
+### Doctors
 
-## Learning Laravel
+- View their Appointment
+- View their scheduled sessions
+- View details of patients
+- Delete account    
+- Eedit account settings
+    
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+    
+### Patiens(Clients)
+  
+  - Make appointment online
+  - Create accounts themslves
+  - View their old booking
+  - Delete account
+  - Edit account settings    
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+    
+| Admin Dashboard | Doctor Dashboard | Patient Dashboard |
+| -------| -------| -------|
+| Email: `admin@edoc.com` | Email: `doctor@edoc.com` |   Email: `patient@edoc.com` | 
+| Password: `123` |  Password: `123` |  Password: `123` |
+| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(3).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(9).png) |    ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(6).png)  |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+ 
+  
+-----------------------------------------------
 
-## Laravel Sponsors
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+# GET STARTED
 
-### Premium Partners
+1. Open your XAMPP Control Panel and start Apache and MySQL.
+2. Extract the downloaded source code zip file.
+3. Copy the extracted source code folder and paste it into the XAMPP's "htdocs" directory.
+4. Browse the PHPMyAdmin in a browser. i.e. http://localhost/phpmyadmin
+5. Create a new database naming `edoc`.
+6. Import the provided SQL file. The file is known as DATABASE edoc.sql located inside the source code root folder.
+7. Browse the Doctor's Appointment Systsem in a browser. i.e. http://localhost/edoc-echanneling-main/.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+## Screenshots
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(1).png) | ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(2).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(3).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(4).png)|
+|--------------| --------------|   --------------|  --------------|    
+|  ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(5).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(6).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(7).png)| ![](https://github.com/hshnudr/edoc-echanneling/blob/main/Screenshots/Screenshot%20(8).png)|
 
-## Code of Conduct
+# The Project was developed using the following:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Apache Version: 	`2.4.39`
 
-## Security Vulnerabilities
+PHP Version: 		`7.3.5`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Server Software: 	`Apache/2.4.39 (Win64) PHP/7.3.5`
 
-## License
+MySQL Version: 		`5.7.26`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Demo video: https://youtu.be/mAWHYAHmit4
+
+
+
