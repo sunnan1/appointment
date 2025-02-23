@@ -18,8 +18,8 @@ if (isset($_POST['patient'])) {
     $created_by = 1; // integer value
 
     $sql = "INSERT INTO patient_appointments 
-            (proced, mrn, patient_name, father_name, age, dob, contact, address, gender, country, created_at, created_by) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            (proced, mrn, patient_name, father_name, age, dob, contact, address, gender, country, doctor, created_at, created_by) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             
     $stmt = $database->prepare($sql);
     if ($stmt === false) {
@@ -27,7 +27,7 @@ if (isset($_POST['patient'])) {
     }
 
     $bind = $stmt->bind_param(
-        "sssssssssssi",
+        "ssssssssssisi",
         $procedure,
         $mrn, 
         $name, 
@@ -38,7 +38,8 @@ if (isset($_POST['patient'])) {
         $address,
         $gender,
         $country, 
-        $date, 
+        $_SESSION['doctor'],
+        $date,
         $created_by
     );
     if ($bind === false) {

@@ -52,12 +52,17 @@
                 //TODO
                 $checker = $database->query("select * from admin where aemail='$email' and apassword='$password'");
                 if ($checker->num_rows==1){
-
-
+                    $doctorid = $checker->fetch_assoc()['doctorid'];
+                    if (is_null($doctorid)) {
+                        echo 'Doctor Not Associated with this Account';
+                        die();
+                    }
+                    $doctor = $database->query("select * from doctor where docid='$doctorid'");
                     //   Admin dashbord
                     $_SESSION['user']=$email;
+                    $_SESSION['doctor']=$doctor->fetch_assoc()['docname'];
                     $_SESSION['usertype']='a';
-                    
+
                     header('location: patient/scheduling.php');
 
                 }else{

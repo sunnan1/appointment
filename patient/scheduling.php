@@ -23,10 +23,13 @@
             height: 100%;
             }
             .scrollable-row {
-            height: calc(100vh - 350px);
+            height: calc(100vh - 300px);
             overflow-y: auto;
             }
-
+            .scrollable-row2 {
+            height: calc(100vh - 300px);
+            overflow-y: auto;
+            }
         </style>
     </head>
     <body>
@@ -75,13 +78,14 @@
                             </div>
                             <br>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-5">
                                     <center><label for="">Patients Queue</label></center>
                                     <div class="row scrollable-row"></div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-1"></div>
+                                <div class="col-sm-5">
                                     <center><label for="">Surgery Queue</label></center>
-                                    <div class="row"></div>
+                                    <div class="row scrollable-row2"></div>
                                 </div>
                             </div>
                             
@@ -101,6 +105,35 @@
 
     <script>
         $(document).ready(function() {
+            $(".scrollable-row2").sortable({
+                update: function(event, ui) {
+                    var updatedCards = [];
+                    $(".scrollable-row2 .card").each(function(index) {
+                        var originalId = $(this).data("id");
+                        updatedCards.push({
+                            id: originalId,
+                            newPosition: index + 1
+                        });
+                    });
+                    console.log();
+                    $.ajax({
+                        url: "patient-functions.php",
+                        type: "POST",
+                        data: {
+                            type: "SEQUENCE_CHANGE",
+                            data: JSON.stringify(updatedCards)
+                        },
+                        dataType: "json",
+                        success: function(response) {
+                            loadPatients()
+                        },
+                        error: function(xhr, status, error) {
+                            loadPatients()
+                        }
+                    });
+
+                }
+            });
             loadPatients();
             let patient;
             $(".searchPatient").on('click' , function() {
@@ -168,20 +201,60 @@
                 });
             });
 
-            $(".disablePtn").on('click' , function() {
-                $(this).sibling().prop('disabled','disabled');
+            $("body").on('click', '.disablePtn' , function() {
+                let id = $(this).attr('data-id');
+                let disable = $(this).attr('data-disable');
+                $.ajax({
+                    url: "patient-functions.php",
+                    type: "POST",
+                    data: {
+                        type: 'DISABLE',
+                        id: id,
+                        disable: disable,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        loadPatients()
+                    },
+                    error: function(xhr, status, error) {
+                        loadPatients()
+                    }
+                });
+            });
+
+            $("body").on('click', '.surgeryCall' , function() {
+                let id = $(this).attr('data-id');
+                $.ajax({
+                    url: "patient-functions.php",
+                    type: "POST",
+                    data: {
+                        type: 'SURGERY_CALL',
+                        id: id,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        loadPatients()
+                    },
+                    error: function(xhr, status, error) {
+                        loadPatients()
+                    }
+                });
             });
         });
 
         function loadPatients() {
             $(".scrollable-row").empty();
-            
+            $(".scrollable-row2").empty();
+
             $.ajax({
                 url: "get-patients.php", 
                 type: "GET",
                 dataType: "json",
                 success: function(response) {
                     response.forEach((value) => {
+                        let disabled = value.disable == 1 ? 'disabled' : '';
+                        let classs = value.disable == 1 ? 'success' : 'danger';
+                        let btn = value.disable == 1 ? 'Enable' : 'Disable';
                         $(".scrollable-row").append(`
                             <div class="col-md-12">
                                 <div class="card card-draggable">
@@ -192,14 +265,44 @@
                                             Contact : `+value.contact+`<br>
                                             Address : `+value.address+` `+value.country+`<br>
                                         </p>
-                                        <button class='btn btn-success' style="float:right;">Call for Surgery</button>
-                                        <button class='btn btn-danger disablePtn' style="float:left;">Disable</button>
+                                        <button class='btn btn-success surgeryCall' data-id=`+value.id+` style="float:right;" `+disabled+`>Call for Surgery</button>
+                                        <button class='btn btn-`+classs+` disablePtn' data-id=`+value.id+` data-disable=`+(value.disable == 1 ? 0 : 1)+` style="float:left;">`+btn+`</button>
                                     </div>
                                 </div>
                             </div>
                         `);
                     });
                     var $scrollableDiv = $('.scrollable-row');
+                    $scrollableDiv.scrollTop($scrollableDiv.prop("scrollHeight"));
+                },
+                error: function(xhr, status, error) {
+                    alert("Error: " + error);
+                }
+            });
+
+            $.ajax({
+                url: "get-surgery-patients.php",
+                type: "GET",
+                dataType: "json",
+                success: function(response) {
+                    response.forEach((value) => {
+                        $(".scrollable-row2").append(`
+                            <div class="col-md-12">
+                                <div class="card card-draggable" data-id=`+value.id+`>
+                                    <div class="card-body">
+                                        <h4 class="card-title">`+value.updated_sequence+`). `+value.patient_name+` , `+value.age+`Y , `+value.gender+` , `+value.mrn+` </h4>
+                                        <p class="card-text">
+                                            Procedure : `+value.proced+`<br>
+                                            Contact : `+value.contact+`<br>
+                                            Address : `+value.address+` `+value.country+`<br>
+                                        </p>
+                                        <button class='btn btn-success' data-id=`+value.id+` style="float:right;">Completed</button>
+                                    </div>
+                                </div>
+                            </div>
+                        `);
+                    });
+                    var $scrollableDiv = $('.scrollable-row2');
                     $scrollableDiv.scrollTop($scrollableDiv.prop("scrollHeight"));
                 },
                 error: function(xhr, status, error) {
